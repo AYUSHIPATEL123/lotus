@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+CART PAGE
+{% endblock  %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>            
+{% if not cart_items %}
+    <h3 class="text-center"> Your cart is empty </h3>
+    <a href="{% url 'store' %}" class="d-block  btn btn-out btn-success btn-square btn-main mt-2 text-center" data-abc="true">
+        Continue Shopping</a>
+{% else %}
+<div class="container">
+    <div class="row container">
+        <aside class="col-lg-6">
+            <div class="card px-4">
+                <form action="{% url 'placeorder' %}" method="post">
+                    {% csrf_token %}
+                <h3>Billing Address</h3>
+                <br>
+                
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="" class="form-label">First Name</label>
+                        <input type="text" name="first_name" class="form-control" placeholder="first name">
+                    </div>
+                    <div class="col form-group">
+                        <label for="" class="form-label">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" placeholder="last name">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="email address">
+                    </div>
+                    <div class="col form-group">
+                        <label for="" class="form-label">Phone Number</label>
+                        <input type="text" name="phone_number" class="form-control" placeholder="Phone Number">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="" class="form-label">Address</label>
+                        <input type="text" name="address" class="form-control" placeholder="enter your address">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="" class="form-label">City</label>
+                        <input type="text" name="city" class="form-control">
+                    </div>
+                    <div class="col form-group">
+                        <label for="" class="form-label">State</label>
+                        <input type="text" name="state" class="form-control">
+                    </div>
+                    <div class="col form-group">
+                        <label for="" class="form-label">Country</label>
+                        <input type="text" name="country" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <button type="submit" name="submit" class="btn btn-primary btn-block px-5 form-control" style="background-color:#0d214c;"> Place Order </button>
+                <br>
+                <br>
+            
+                </form>
+            </div>
+        </aside>
+        
+        
+            
+            {% comment %} <div class="card mb-3">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group"> <label>Have coupon?</label>
+                            <div class="input-group"> <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                        </div>
+                    </form>
+                </div>
+            </div> {% endcomment %}
+        <aside class="col-lg-6">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col">Image</th>
+                                <th scope="col">Product</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" width="120">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cart_item  in cart_items %}
+                            <tr>
+                                <td>
+                                    <div class="aside"><img src={{ cart_item.product.image.url }} class="img-sm " style="height:5em; width:6rem;"></div>
+                                </td>
+                                <td>
+                                    <div class="info"><a href="{{ cart_item.product.get_url }}" class="title text-dark text-decoration-none"  data-abc="true">{{cart_item.product.product_name}} </a></div>
+                                </td>
+                                <td> 
+                                    <div class="d-flex flex-row align-items-center qty">
+                                    <h6 class="text-grey mt-1 mr-1 ml-1">{{ cart_item.quintity }}</h6></div>
+                                </td>
+                                <td>
+                                    <div class="price-wrap"><var class="price">${{ cart_item.sub_total}}</var><br><small class="text-muted"> ${{cart_item.product.price}} each </small></div>
+                                </td>                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <hr> 
+                    <br>
+                    <a href="{% url 'store' %}" class="btn btn-out btn-success btn-square btn-main mt-2 px-5" data-abc="true">Continue Shopping</a>
+                
+                </div>
+            </div>
+        </aside>
+    
+    </div>
+</div>
+{% endif %}
+{% endblock %}

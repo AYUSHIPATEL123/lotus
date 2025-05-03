@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Product Details{% endblock  %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Images -->
+        <div class="col-md-6 mb-4">
+            <img style="width:25rem" src={{single_product.image.url}} id="mainImage">
+            {% comment %} <div class="d-flex justify-content-between">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 1" class="thumbnail rounded active" onclick="changeImage(event, this.src)">
+                <img src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 2" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 3" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                <img src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 4" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+            </div> {% endcomment %}
+        </div>
+
+        <!-- Product Details -->
+         <br>
+         <br>       
+        <div class="col-md-6">
+            <h2 class="mb-3">{{single_product.product_name}}</h2>
+            <p class="text-muted mb-4">SKU: WH1000XM4</p>
+            <div class="mb-3">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+                <span class="ms-2">4.5 (120 reviews)</span>
+            </div>
+            <p class="mb-4">{{ single_product.discription}}</p>
+            <div class="mb-3">
+                <span class="h4 me-2">${{single_product.price}}</span>
+            </div>
+           {% if single_product.stock  <= 0 %}
+                <h5 class="text-danger">Out of Stock</h5>
+           {% else %}
+                {% if in_cart %}
+           <a href="{% url 'add_cart' single_product.id %}" class="btn btn-secondary btn-lg mb-3 me-2">
+            <i class="bi bi-cart-check"></i>
+            Added to Cart
+        </a>
+           <a href="{% url 'cart' %}" class="btn btn-primary btn-lg mb-3 me-2">
+            <i class="bi bi-eye"></i>
+            View Cart
+        </a>
+                {% else %}
+            <a href="{% url 'add_cart' single_product.id %}" style="background-color:#0d214c" class="btn btn-primary btn-lg mb-3 me-2">
+                <i class="bi bi-cart-plus"></i> Add to Cart
+            </a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock  %}

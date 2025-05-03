@@ -1,0 +1,37 @@
+
+#logo{
+    height : 3rem;
+    width : 4rem;
+}
+
+/* body{
+    background-color: azure;
+} */
+
+
+#slide h5{
+ color:white;
+}
+#slide p{
+ color:white;
+}
+
+#navbar{
+    background-color: #0d214c;
+    box-shadow: 0px 4px 8px;
+    
+}
+
+li>a{
+    color: rgb(189 37 37);
+    text-decoration: none;
+    
+}
+
+h3{
+    text-align: center;
+}
+
+#foot{
+    background-color: rgb(71 80 255 / 11%);
+}

@@ -1,0 +1,16 @@
+{% autoescape off %}
+
+hi {{user.first_name }},
+
+Your order have been recived...
+-------------------------------------------------------------------------------------------------
+
+your oder id is : {{order.order_number }}
+
+total price : {{ order.order_totle }}
+
+date : {{ order.created_at }}
+
+address : {{ order.address }}
+--------------------------------------------------------------------------------------------------
+{% endautoescape %}

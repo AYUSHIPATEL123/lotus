@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+hi {{user.first_name }},
+
+please activae you user account...
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+if you are not the currect user ignor this massage..
+
+{% endautoescape %}

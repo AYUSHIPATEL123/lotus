@@ -1,0 +1,31 @@
+step-1 : PS D:\ecommerce> py -m venv venv
+
+
+step-2 : PS D:\ecommerce> pip show django
+Name: Django
+Version: 5.1.7
+Summary: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+Home-page: https://www.djangoproject.com/
+Author: 
+Author-email: Django Software Foundation <foundation@djangoproject.com>
+License: BSD-3-Clause
+Location: C:\Users\Dell\AppData\Roaming\Python\Python313\site-packages
+Requires: asgiref, sqlparse, tzdata
+
+
+step-3 : PS D:\ecommerce> django-admin startproject my_website 
+
+      
+step-4 : PS D:\ecommerce> py manage.py runserver
+
+            Username (leave blank to use 'dell'):AYUSHI,pass : 123654A@A
+
+
+
+
+
+
+             
+
+
+           
