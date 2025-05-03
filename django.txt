@@ -18,7 +18,7 @@ step-3 : PS D:\ecommerce> django-admin startproject my_website
       
 step-4 : PS D:\ecommerce> py manage.py runserver
 
-            Username (leave blank to use 'dell'):AYUSHI,pass : 123654A@A
+           
 
 
 
