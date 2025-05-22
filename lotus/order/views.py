@@ -135,6 +135,8 @@ def placeorder(request,total=0,quintity=0):
             return render(request,'order/payment.html',context)
         else:
             return redirect('checkout')
+    
+    return render(request,'store/checkout.html')     
         
 def ordercomplete(request):
     order_id=request.GET.get('order_id');

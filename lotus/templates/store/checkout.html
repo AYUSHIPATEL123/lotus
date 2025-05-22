@@ -8,8 +8,7 @@ CART PAGE
 <br>
 <br>
 <br>
-<br>
-<br>            
+           
 {% if not cart_items %}
     <h3 class="text-center"> Your cart is empty </h3>
     <a href="{% url 'store' %}" class="d-block  btn btn-out btn-success btn-square btn-main mt-2 text-center" data-abc="true">
@@ -75,9 +74,7 @@ CART PAGE
                 </form>
             </div>
         </aside>
-        
-        
-            
+          
             {% comment %} <div class="card mb-3">
                 <div class="card-body">
                     <form>
@@ -128,7 +125,6 @@ CART PAGE
                 </div>
             </div>
         </aside>
-    
     </div>
 </div>
 {% endif %}

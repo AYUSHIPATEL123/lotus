@@ -19,7 +19,7 @@ step-3 : PS D:\ecommerce> django-admin startproject my_website
 step-4 : PS D:\ecommerce> py manage.py runserver
 
            
-
+step-5 :ps D:\ecommerce> py manage.py startapp app
 
 
 
