@@ -13,12 +13,14 @@ def store(request,category_slug=None):
     if category_slug != None:
         categories=get_object_or_404(Category,slug=category_slug);
         products = Product.objects.filter(is_available=True,category=categories)
+        category= Category.objects.get(slug=category_slug);
         paginator=Paginator(products,8)
         page=request.GET.get('page')
         pageed_products=paginator.get_page(page)
         product_count=products.count()
     else:    
         products=Product.objects.all().filter(is_available=True)
+        category= "All Products"
         paginator=Paginator(products,8)
         page=request.GET.get('page')
         pageed_products=paginator.get_page(page)
@@ -26,6 +28,7 @@ def store(request,category_slug=None):
     context={
         'products': pageed_products,
         'product_count':product_count,
+        'category':category,
     }
     return render(request,'store/store.html',context)
 
