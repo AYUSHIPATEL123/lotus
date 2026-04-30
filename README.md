@@ -1,2 +1,2 @@
 # lotus
-this repository is for django website.
+this repository is for django E-commerce webApp.
