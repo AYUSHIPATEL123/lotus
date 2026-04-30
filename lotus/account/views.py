@@ -6,6 +6,7 @@ from .models import Account
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.sites.requests import RequestSite
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -30,7 +31,8 @@ def registration(request):
             user.phone_number = phone_number
             user.save()
             # activation process
-            current_site=get_current_site(request)
+            # current_site=get_current_site(request)
+            current_site=RequestSite(request)
             mail_subject="please activate your account"
             message = render_to_string('account/account_varifucation_email.html',{
                 'user':user,
@@ -151,7 +153,7 @@ def forgotPassword(request):
         if Account.objects.filter(email=email).exists():
             user=Account.objects.get(email__exact=email)
 
-            current_site=get_current_site(request)
+            current_site=request.get_current_site()
             mail_subject="reset your password"
             message = render_to_string('account/resetpassword_email.html',{
                 'user':user,

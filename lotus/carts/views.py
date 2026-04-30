@@ -12,9 +12,9 @@ def _cart_id(request):
     return cart
     
 def add_cart(request,product_id):
-    product=Product.objects.get(id=product_id)
+    product = Product.objects.get(id=product_id)
     try:
-        cart=Cart.objects.get(cart_id=_cart_id(request))
+        cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
         cart = Cart.objects.create(cart_id=_cart_id(request))
     cart.save()
@@ -88,11 +88,13 @@ def cart(request, total=0,quintity=0,cart_items=None):
            pass  
 
     context={
+
         'cart_items':cart_items,
         'quintity':quintity,
         'total':total,
         'tax':tax,
         'grand_total':grand_total,
+
     }       
     return render(request,'store/cart.html',context)
 

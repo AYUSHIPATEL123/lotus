@@ -15,7 +15,6 @@ class AccountManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user;
@@ -43,7 +42,6 @@ class Account(AbstractBaseUser):
     username=models.CharField(max_length=50,unique=True)
     email= models.EmailField(max_length=50,unique=True)
     phone_number=models.CharField(max_length=50)
-
 
     # REQUIRED_FIELDS
     date_joined=models.DateTimeField(auto_now_add=True)
