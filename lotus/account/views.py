@@ -67,6 +67,7 @@ def login(request):
     if request.method == 'POST':
         email=request.POST['email']
         password=request.POST['password']
+        next_url = request.POST.get("next")
 
         user = auth.authenticate(email=email,password=password)
 
@@ -87,13 +88,19 @@ def login(request):
             except Cart.DoesNotExist:
                 print("you are in except block")
                 pass    
+        
             auth.login(request,user)
             # messages.success(request,"logged in successful...")
-            return redirect('home')
+        
+            
+            print(f"....=.=.=.{next_url}.=.=.=....")
+        
+            return redirect(next_url or 'home')
+        
         else:
             messages.error(request,"invalid caradencials...")
             return redirect('login')
-    return render(request,'account/login.html')
+    return render(request,'account/login.html',{'next': request.GET.get('next')})
 
 @login_required(login_url='login')
 def logout(request):

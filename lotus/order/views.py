@@ -9,6 +9,7 @@ import json
 from lotus.settings import EMAIL_HOST_USER
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def payment(request):
@@ -79,21 +80,23 @@ def payment(request):
     }
     return JsonResponse(data)
 
-   
-
+@login_required(login_url='login')   
 def placeorder(request,total=0,quintity=0):
     current_user = request.user
 
     cart_items=Cartitem.objects.filter(user=current_user)
     count=cart_items.count()
+    
     if count <=0:
         return redirect('store')
     
     grand_total = 0
     tax = 0
+    
     for cart_item in cart_items:
         total += (cart_item.product.price * cart_item.quintity)
         quintity += cart_item.quintity
+    
     tax=(2*total)/100
     grand_total=total+tax  
 
@@ -138,6 +141,7 @@ def placeorder(request,total=0,quintity=0):
     
     return render(request,'store/checkout.html')     
         
+@login_required(login_url='login')        
 def ordercomplete(request):
     order_id=request.GET.get('order_id');
     trans_id=request.GET.get('tran_id');
